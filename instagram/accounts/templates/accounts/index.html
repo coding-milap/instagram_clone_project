@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'accounts/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/nav.css' %}">
+    <script src="{% static 'accounts/js/nav.js' %}"></script>
+   
+</head>
+<body>
+
+
+  
+
+    <div class="main">
+        <div class="navbar" > 
+
+    <nav>
+
+        <div class="box-1">Instagram</div>
+        <div class="box-2">
+            
+            <div class="inner-box inner-box-1">
+            <a href="{% url 'home' %}"> <div style="padding-right: 10px;"><i class="fa-solid fa-house" style="color: #f1f2f3;"></i></div> </a>
+                <div>Home</div> 
+            </div>
+            <div class="inner-box">
+                <div style="padding-right: 10px;"><i class="fa-solid fa-magnifying-glass" style="color: #f0f2f5;"></i></div>
+                <div>Search</div>
+            </div>
+            <div class="inner-box">
+                <div style="padding-right: 10px;"><i class="fa-brands fa-wpexplorer" style="color: #f1f4f9;"></i></div>
+                <div>Explore</div>
+            </div>
+            <div class="inner-box">
+
+                <div style="padding-right: 10px;"><i class="fa-regular fa-video"></i></div>
+                <div>Reels</div>
+                
+            </div>
+            <div class="inner-box">
+                <div style="padding-right: 10px;"><i class="fa-solid fa-message" style="color: #ecf1f9;"></i></div>
+                <div>Messages</div>
+            </div>
+            <div class="inner-box">
+               <a href="{% url 'show-follow-requests' %}"> <div style="padding-right: 10px;"><i class="fa-regular fa-heart"></i></i></div></a>
+                <div>Notifications</div>
+            </div>
+            <div class="inner-box">
+                <div style="padding-right: 10px;"><i class="fa-solid fa-plus" style="color: #e2e5e9;"></i></div>
+                <div>Create</div>
+            </div>
+            <div class="inner-box">
+            
+              <a href="{% url 'user-profile' %}">  <div  style="padding-right: 10px;"><i class="fa-solid fa-user" style="color: #ebeef5;"></i></div></a>
+            
+                <div>Profile</div>
+            </div>
+
+        </div>
+        <div class="box-3">
+            <div style="padding-right: 10px;">
+
+                <button id="btn-1" onclick="hello()" >
+                    <i class="fa-solid fa-bars fa-xl"></i>
+                </button>
+            
+                
+            </div>
+            <button id="btn-1" onclick="hello()" >
+            <div>More</div>
+        </button>
+        </div>
+
+        
+        
+    </nav>
+
+
+    <div class="card" id="card-1">
+            <div class="small-ele" >
+                <div style="padding-right: 10px;" > 
+                    <i class="fa-solid fa-bookmark"></i>
+                </div>
+                <div>Saved</div>
+               
+            </div>
+
+            <div class="small-ele">
+            
+                <div style="padding-right: 10px;" >
+                    <button id="btn-2" onclick="moon()" >
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                   
+                </div>
+                <button id="btn-2" onclick="moon()" >
+                <div>Switch Appearence</div>
+            </button>
+            </div>
+
+            <div class="small-ele">
+                <div style="padding-right: 10px;" ><i class="fa-regular fa-circle-xmark"></i></div>
+                <div>Report a Problem</div>
+            </div>
+
+            <hr style="color: white;">
+
+            <div class="small-ele">
+                <a href="{% url 'user-logout' %}" style="text-decoration: none;" >
+                    <div style="font-weight: bold;" >Logout</div>
+                </a>
+            </div>
+
+        </div>
+   
+    
+        </div>
+        <div class="content" style="color: white;margin-left: 30px;">
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li style="color:green; list-style: none; padding: 20px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="stories">
+                <div class="story">
+                    <img src="../../static/accounts/images/Background-image.jpg" width="50px" height="50px" style="border-radius: 50%;"/>
+                <div class="story"><img src="../../static/accounts/images/Background-image.jpg" width="50px" height="50px" style="border-radius: 50%;"/></div>
+
+                <div class="story"><img src="../../static/accounts/images/Background-image.jpg" width="50px" height="50px" style="border-radius: 50%;"/></div>
+                <div class="story"><img src="../../static/accounts/images/Background-image.jpg" width="50px" height="50px" style="border-radius: 50%;"/></div>
+                <div class="story"><img src="../../static/accounts/images/Background-image.jpg" width="50px" height="50px" style="border-radius: 50%;"/></div>
+                <div class="story"><img src="../../static/accounts/images/Background-image.jpg" width="50px" height="50px" style="border-radius: 50%;"/></div>
+                <div class="story"><img src="../../static/accounts/images/Background-image.jpg" width="50px" height="50px" style="border-radius: 50%;"/></div>
+                <div class="story"><img src="../../static/accounts/images/Background-image.jpg" width="50px" height="50px" style="border-radius: 50%;"/></div>
+
+            </div>
+            <div class="posts" >
+             {% for post in all_posts%}   
+                
+             {% if post.user_posted.email in following %}
+             
+                
+            <div class="post">
+                <img src="../../../media/{{post.post}}" alt="" width="400px" height="600px" style="object-fit:fill;" >
+            </div>
+            <div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="display: flex;">
+                        <div style="padding-left: 10px; padding-top: 15px;"><i class="fa-regular fa-2xl fa-heart"></i></i></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div style="padding-right: 10px; padding-top: 15px;" > 
+                        <i class="fa-solid fa-xl fa-bookmark"></i>
+                    </div>
+                </div>
+                <div></div>
+                <div></div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+            </div>
+        </div>
+       
+    </div>
+    
+    <div class="sidebar" style="color: white; margin-top: 200px;" >
+        {% for user in users %} 
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+        <div style="display: flex;">
+        <a href="#" > <div style="height: 50px; width: 50px; border: 2px solid white;border-radius: 50%; margin-right: 10px;" >
+                <img src="{{user.picture.url}}" style="height: 50px; width: 50px; border-radius: 50%;"  alt="">
+            </div>
+        </a>
+            <div style="margin-top: 10px;">{{user.username}}</div>
+        </div>
+
+        
+       <a  href="{% url 'send-follow-request' user.email %}" style="text-decoration:none" id="click">
+        
+        <div id="request" style="margin-top: 20px;margin-right: 20px; color: rgb(156, 156, 240); text-decoration: none;" >
+            Follow
+        </div>
+       </a> 
+    </div>
+       {% endfor %}
+        
+    </div>
+   
+    </div>
+
+    <script src="{% static 'accounts/js/accept.js' %}"></script>
+   <script>
+    function moon()
+{
+    click_counter = click_counter + 1;
+    body = document.getElementsByName('body');
+    
+    if (click_counter % 2 == 0)
+    {
+        body.style.backgroundColor = "white";
+    }
+    else{
+        body.style.backgroundColor = "black";
+    }
+
+}
+   </script>
+    
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/nav.css' %}">
+    <script src="{% static 'accounts/js/nav.js' %}"></script>
+   
+</head>
+<body>
+    <div style="display: flex;">
+    <div class="navbar" style="margin-right: 150px;" >
+    <nav>
+
+        <div class="box-1">Instagram</div>
+        <div class="box-2">
+            
+            <div class="inner-box inner-box-1">
+            <a href="{% url 'home' %}"> <div style="padding-right: 10px;"><i class="fa-solid fa-house" style="color: #f1f2f3;"></i></div> </a>
+                <div>Home</div> 
+            </div>
+            <div class="inner-box">
+                <div style="padding-right: 10px;"><i class="fa-solid fa-magnifying-glass" style="color: #f0f2f5;"></i></div>
+                <div>Search</div>
+            </div>
+            <div class="inner-box">
+                <div style="padding-right: 10px;"><i class="fa-brands fa-wpexplorer" style="color: #f1f4f9;"></i></div>
+                <div>Explore</div>
+            </div>
+            <div class="inner-box">
+
+                <div style="padding-right: 10px;"><i class="fa-regular fa-video"></i></div>
+                <div>Reels</div>
+                
+            </div>
+            <div class="inner-box">
+                <div style="padding-right: 10px;"><i class="fa-solid fa-message" style="color: #ecf1f9;"></i></div>
+                <div>Messages</div>
+            </div>
+            <div class="inner-box">
+                <div style="padding-right: 10px;"><i class="fa-regular fa-heart"></i></i></div>
+                <div>Notifications</div>
+            </div>
+            <div class="inner-box">
+                <div style="padding-right: 10px;"><i class="fa-solid fa-plus" style="color: #e2e5e9;"></i></div>
+                <div>Create</div>
+            </div>
+            <div class="inner-box">
+            
+              <a href="{% url 'user-profile' %}">  <div  style="padding-right: 10px;"><i class="fa-solid fa-user" style="color: #ebeef5;"></i></div></a>
+            
+                <div> Profile</div>
+            </div>
+
+        </div>
+        <div class="box-3">
+            <div style="padding-right: 10px;">
+
+                <button id="btn-1" onclick="hello()" >
+                    <i class="fa-solid fa-bars fa-xl"></i>
+                </button>
+            
+                
+            </div>
+            <div>More</div>
+
+        </div>
+
+        
+        
+    </nav>
+</div>
+    <div class="container">
+        <div class="profile">
+            <div class="profile-image" style="margin-left: 200px;"><img src="{{user.picture.url}}" alt="" height="150px" width="150px" style="border-radius: 50%;"></div>
+            <div style="display: flex; margin-left: 50px; margin-top: 50px;">
+                <div style="margin-right: 40px; font-size: larger;">{{user.username}}</div>
+                <div style="margin-right: 40px;"><button style="border: 2px solid white; border-radius: 10px; height: 20px; width: 150px; background-color: white;color: black; font-weight: bold;">Edit Profile</button></div>
+                <div><i class="fa-sharp fa-xl fa-regular fa-gear"></i></div>
+            </div>
+        </div>
+        <div style="display: flex;margin-left: 400px;">
+            <div style="margin-right:20px">0 Posts</div>
+            <div style="margin-right:20px">{{user.followers}} Followers</div>
+            <div>{{user.following}} Following</div>
+        </div>
+        <div style="margin-left: 400px; margin-top: 10px;">
+            <div style="margin-bottom: 10px;">{{user.first_name}}</div>
+            <div>{{user.Bio}}</div>
+        </div>
+        <br>
+        <hr style="color:white" >
+
+        <div style="display: flex; flex-wrap: wrap;margin-left: 160px;" >
+
+            {% for post in posts %}
+
+        <div class="posts" style="
+        margin-left: 10px;
+        margin-top: 20px;
+        height: 300px;
+        width: 400px;
+        border: 2px solid rgb(238, 241, 242);">
+       
+        <img src="{{post.post.url}}" height="300px" width="400px"  alt="">
+
+        </div>
+{% endfor  %}
+        </div>
+        
+    </div>
+</div>
+</body>
+</html>

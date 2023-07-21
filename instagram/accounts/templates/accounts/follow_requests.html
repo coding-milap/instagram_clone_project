@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'accounts/css/notifications.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/nav.css' %}">
+    <script src="{% static 'accounts/js/nav.js' %}"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <div>
+        <div class="navbar" > 
+
+            <nav>
+        
+                <div class="box-1">Instagram</div>
+                <div class="box-2">
+                    
+                    <div class="inner-box inner-box-1">
+                    <a href="{% url 'home' %}"> <div style="padding-right: 10px;"><i class="fa-solid fa-house" style="color: #f1f2f3;"></i></div> </a>
+                        <div>Home</div> 
+                    </div>
+                    <div class="inner-box">
+                        <div style="padding-right: 10px;"><i class="fa-solid fa-magnifying-glass" style="color: #f0f2f5;"></i></div>
+                        <div>Search</div>
+                    </div>
+                    <div class="inner-box">
+                        <div style="padding-right: 10px;"><i class="fa-brands fa-wpexplorer" style="color: #f1f4f9;"></i></div>
+                        <div>Explore</div>
+                    </div>
+                    <div class="inner-box">
+        
+                        <div style="padding-right: 10px;"><i class="fa-regular fa-video"></i></div>
+                        <div>Reels</div>
+                        
+                    </div>
+                    <div class="inner-box">
+                        <div style="padding-right: 10px;"><i class="fa-solid fa-message" style="color: #ecf1f9;"></i></div>
+                        <div>Messages</div>
+                    </div>
+                    <div class="inner-box">
+                       <a href="{% url 'show-follow-requests' %}"> <div style="padding-right: 10px;"><i class="fa-regular fa-heart"></i></i></div></a>
+                        <div>Notifications</div>
+                    </div>
+                    <div class="inner-box">
+                        <div style="padding-right: 10px;"><i class="fa-solid fa-plus" style="color: #e2e5e9;"></i></div>
+                        <div>Create</div>
+                    </div>
+                    <div class="inner-box">
+                    
+                      <a href="{% url 'user-profile' %}">  <div  style="padding-right: 10px;"><i class="fa-solid fa-user" style="color: #ebeef5;"></i></div></a>
+                    
+                        <div>Profile</div>
+                    </div>
+        
+                </div>
+                <div class="box-3">
+                    <div style="padding-right: 10px;">
+        
+                        <button id="btn-1" onclick="hello()" >
+                            <i class="fa-solid fa-bars fa-xl"></i>
+                        </button>
+                    
+                        
+                    </div>
+                    <div>More</div>
+        
+                </div>
+        
+                
+                
+            </nav>
+        
+        
+            <div class="card" id="card-1">
+                    <div class="small-ele" >
+                        <div style="padding-right: 10px;" > 
+                            <i class="fa-solid fa-bookmark"></i>
+                        </div>
+                        <div>Saved</div>
+                       
+                    </div>
+        
+                    <div class="small-ele">
+                    
+                        <div style="padding-right: 10px;" >
+                            <button id="btn-2" onclick="moon()" >
+                                <i class="fa-solid fa-moon"></i>
+                            </button>
+                           
+                        </div>
+                        <div>Switch Appearence</div>
+                    </div>
+        
+                    <div class="small-ele">
+                        <div style="padding-right: 10px;" ><i class="fa-regular fa-circle-xmark"></i></div>
+                        <div>Report a Problem</div>
+                    </div>
+        
+                    <hr style="color: white;">
+        
+                    <div class="small-ele">
+                        <div style="font-weight: bold;" >Logout</div>
+                    </div>
+        
+                </div>
+           
+            
+                </div>
+    </div>
+    <div style="margin-left: 350px; margin-top: 50px; display: flex;">
+       <div style="margin-right: 20px;display: flex; flex-direction: column;">
+        {%  for request in follow_requests %}
+       <div style="display: flex;">
+
+        <div class="profile-image" style="margin-left: 200px;margin-top: 10px; height: 50px; width: 50px; border: 2px solid white; border-radius: 50%;"><img src="{{request.follower.picture.url}}" alt="" height="50px" width="50px" style="border-radius: 50%;"></div>
+        <div style="margin-top: 25px; margin-left: 20px;"> {{request.follower.username}}</div> 
+        <form action="{% url 'accept-follow-request' request.follower.email %}" method="post">
+            {% csrf_token %}
+    
+        <button type="submit" style="border: 2px solid white;border-radius: 5px;margin-top: 20px; margin-left: 20px;text-align: center; width: 180px; height: 30px ;background-color: white;color: black;"> 
+            Accept Follow Request
+           
+        </button>
+    </form>
+    <form action="{% url 'send-follow-request' request.follower.email %}" method="post">
+        {% csrf_token %}
+
+    <button type="submit" style="border: 2px solid white;border-radius: 5px;margin-top: 20px; margin-left: 20px;text-align: center; width: 180px; height: 30px ;background-color: white;color: black;"> 
+        Follow Back
+       
+    </button>
+</form>
+
+    </div>
+       {%  endfor  %}
+       </div>
+     
+    </div>
+
+
+</div>
+
+</body>
+</html>
